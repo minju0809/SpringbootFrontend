@@ -2,6 +2,7 @@ import axios from 'axios';
 import '../App.css';
 
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function GuestbookList() {
   const [data, setData] = useState({
@@ -32,7 +33,7 @@ function GuestbookList() {
       start, ch1, ch2
     });
     axios({
-      method: 'get', url: 'http://127.0.0.1:8081/ReactGuestbookList', params: {
+      method: 'get', url: 'http://localhost:8081/ReactGuestbookList', params: {
         start, ch1, ch2
       }
     }).then((res) => {
@@ -43,6 +44,9 @@ function GuestbookList() {
 
   return (
     <div className="App">
+      <div>
+        <Link to={"/"}><h1>홈으로</h1></Link> 
+      </div>
       <div className="record-info">
         <div>1. 전체 레코드 수: {data.totalCount}</div>
         <div>2. 페이지 사이즈 : {data.pageSize}</div>
@@ -61,7 +65,7 @@ function GuestbookList() {
         <div>9. 가로 하단 마지막 : {data.listEndPage}</div>
       </div>
       <h2>방명록 목록</h2>
-      <table border="1">
+      <table className='basic-table' align='center'>
         <thead>
           <tr>
             <th>rownum</th>
